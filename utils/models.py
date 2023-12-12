@@ -15,14 +15,12 @@ class ProximityEstimator:
         self.ts = ts
         self.len = len(ts)
 
-    def evaluate(self, index):
+    def evaluate(self, index: int):
         assert (self.k < index < self.len)
         segment_for_prediction = self.ts[index - self.k:index]
-        # print(segment_for_prediction)
         corr_arr = []
         for j in range(index - self.k + 1):
             segment = self.ts[j:j + self.k]
-            # print(segment)
             corr = np.corrcoef(segment_for_prediction, segment)[0, 1]  # Get the correlation value
             corr_arr.append(corr)
 
@@ -37,11 +35,6 @@ class ProximityEstimator:
             prediction.append(next_val)
 
         return np.array(prediction)
-
-
-
-
-
 
 class ConstantDependenciesRetrieval:
     
