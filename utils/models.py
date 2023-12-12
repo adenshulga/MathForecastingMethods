@@ -21,7 +21,7 @@ class ProximityEstimator:
         corr_arr = []
         for j in range(index - self.k + 1):
             segment = self.ts[j:j + self.k]
-            corr = np.corrcoef(segment_for_prediction, segment)[0, 1]  # Get the correlation value
+            corr = np_corr(segment_for_prediction, segment)[0, 1]  # Get the correlation value
             corr_arr.append(corr)
 
         segment_begin = np.argmax(corr_arr)
